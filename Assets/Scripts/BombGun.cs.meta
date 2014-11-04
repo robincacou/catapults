@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 82cd8c38a1c22453489c38522e370cd5
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - bombPrefab: {fileID: 100000, guid: e3039253f52304e5e8a424775aab5600, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
