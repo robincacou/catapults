@@ -14,8 +14,6 @@ public class Catapult : MonoBehaviour {
 
 	public AudioSource throwSfx;
 
-	MouseLook mouseLookCam;
-	MouseLook mouseLookChar;
 	bool pulling = false;
 	bool throwing = false;
 	float timerToEnableCollider = 1f;
@@ -25,9 +23,6 @@ public class Catapult : MonoBehaviour {
 
 	void Start ()
 	{
-		// TODO MouseLookManager
-		mouseLookCam = Camera.main.GetComponent<MouseLook>();
-		mouseLookChar = FindObjectOfType<MouseLook>();
 	}
 
 	void Update ()
@@ -84,8 +79,7 @@ public class Catapult : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0))
 		{
 			pulling = true;
-			mouseLookCam.enabled = false;
-			mouseLookChar.enabled = false;
+			MouseLookManager.SetCatapultsMouseLookActivated(false);
 		}
 		else if (pulling && Input.GetMouseButtonUp(0))
 		{
@@ -102,8 +96,7 @@ public class Catapult : MonoBehaviour {
 
 			pulling = false;
 			throwing = true;
-			mouseLookCam.enabled = true;
-			mouseLookChar.enabled = true;
+			MouseLookManager.SetCatapultsMouseLookActivated(true);
 		}
 	}
 }

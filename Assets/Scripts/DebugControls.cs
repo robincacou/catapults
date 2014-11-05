@@ -12,13 +12,11 @@ public class DebugControls : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.F1))
 			transform.position = startPos;
-		if (Input.GetKeyDown(KeyCode.F2)) // TODO Faire un manager de MouseLook qui possède plusieurs bools
-										  // et se charge de véritablement activer ou pas les scripts
+		if (Input.GetKeyDown(KeyCode.F2))
 		{
 			Screen.lockCursor = !Screen.lockCursor;
 
-			foreach (MouseLook ml in GetComponentsInChildren<MouseLook>())
-				ml.enabled = !ml.enabled;
+			MouseLookManager.ToggleDebugMouseLookActivated();
 		}
 	}
 }

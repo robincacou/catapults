@@ -27,6 +27,7 @@ public class SpawnManager : MonoBehaviour {
 		((MonoBehaviour)playerLocalInstance.GetComponent("FPSInputController")).enabled = true;
 		playerLocalInstance.GetComponent<BlockCreator>().enabled = true;
 		playerLocalInstance.GetComponent<DebugControls>().enabled = true;
+		playerLocalInstance.GetComponent<ManagersInfoHarvester>().enabled = true;
 
 		playerLocalInstance.transform.FindChild("Main Camera").gameObject.SetActive(true);
 	}
