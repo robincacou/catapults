@@ -6,6 +6,9 @@ public class SpawnManager : MonoBehaviour {
 	public GameObject[] team1Points;
 	public GameObject[] team2Points;
 
+	public GameObject gui;
+	public GUIToolbar guiToolbar;
+
 	public enum ETeam
 	{
 		Team1,
@@ -28,6 +31,9 @@ public class SpawnManager : MonoBehaviour {
 		playerLocalInstance.GetComponent<BlockCreator>().enabled = true;
 		playerLocalInstance.GetComponent<DebugControls>().enabled = true;
 		playerLocalInstance.GetComponent<ManagersInfoHarvester>().enabled = true;
+		playerLocalInstance.GetComponent<ToolSelector>().enabled = true;
+		playerLocalInstance.GetComponent<ToolSelector>().Initialize(guiToolbar);
+		gui.SetActive(true);
 
 		playerLocalInstance.transform.FindChild("Main Camera").gameObject.SetActive(true);
 
