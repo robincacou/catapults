@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour {
 		GameObject playerLocalInstance = PhotonNetwork.Instantiate("Player", pos.position, pos.rotation, (int)team);
 
 		playerLocalInstance.GetComponent<MouseLook>().enabled = true;
-		playerLocalInstance.GetComponent<CharacterMotor>().enabled = true;
+		((MonoBehaviour)playerLocalInstance.GetComponent("CharacterMotor")).enabled = true;
 		((MonoBehaviour)playerLocalInstance.GetComponent("FPSInputController")).enabled = true;
 		playerLocalInstance.GetComponent<BlockCreator>().enabled = true;
 		playerLocalInstance.GetComponent<DebugControls>().enabled = true;
