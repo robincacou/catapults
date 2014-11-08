@@ -14,10 +14,15 @@ public class BlockCreator : MonoBehaviour {
 
 	void Update ()
 	{
+		if (StateManager.CurrentState() != StateManager.State.Standard
+		    && StateManager.CurrentState() != StateManager.State.BlockCreating)
+			return;
+
 		if (Input.GetMouseButtonDown(1))
 		{
 			drawGhost = true;
 			ghost = ((GameObject)Instantiate(ghostPrefab)).GetComponent<GhostBlock>();
+			StateManager.SetState(StateManager.State.BlockCreating);
 		}
 
 		if (drawGhost)
@@ -34,6 +39,7 @@ public class BlockCreator : MonoBehaviour {
 
 				Destroy(ghost.gameObject);
 				drawGhost = false;
+				StateManager.SetState(StateManager.State.Standard);
 			}
 		}
 	}

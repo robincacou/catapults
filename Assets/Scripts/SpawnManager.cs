@@ -30,5 +30,7 @@ public class SpawnManager : MonoBehaviour {
 		playerLocalInstance.GetComponent<ManagersInfoHarvester>().enabled = true;
 
 		playerLocalInstance.transform.FindChild("Main Camera").gameObject.SetActive(true);
+
+		StateManager.SetState(StateManager.State.Standard);
 	}
 }

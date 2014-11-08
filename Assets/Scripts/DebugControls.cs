@@ -10,6 +10,9 @@ public class DebugControls : MonoBehaviour {
 	}
 
 	void Update () {
+		if (StateManager.CurrentState() != StateManager.State.Standard)
+			return;
+
 		if (Input.GetKeyDown(KeyCode.F1))
 			transform.position = startPos;
 		if (Input.GetKeyDown(KeyCode.F2))

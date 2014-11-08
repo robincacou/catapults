@@ -19,6 +19,9 @@ public class ToolSelector : MonoBehaviour {
 
 	void Update ()
 	{
+		if (StateManager.CurrentState() != StateManager.State.Standard)
+			return;
+
 		if (Input.GetAxis("Mouse ScrollWheel") > 0f)
 		{
 			selectedTool++;

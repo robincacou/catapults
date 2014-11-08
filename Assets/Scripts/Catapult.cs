@@ -47,13 +47,9 @@ public class Catapult : MonoBehaviour {
 			thingyContainer.transform.Rotate(new Vector3(0, 0, - angle));
 
 			if (thingyContainer.transform.rotation.eulerAngles.z > maxPullAngle)
-				thingyContainer.transform.localRotation = Quaternion.Euler(new Vector3(0,
-				                                                                  0,
-				                                                                  maxPullAngle));
+				thingyContainer.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, maxPullAngle));
 			if (thingyContainer.transform.rotation.eulerAngles.z < minPullAngle)
-				thingyContainer.transform.localRotation = Quaternion.Euler(new Vector3(0,
-				                                                                  0,
-				                                                                  minPullAngle));
+				thingyContainer.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, minPullAngle));
 		}
 
 		if (throwing)
@@ -62,9 +58,7 @@ public class Catapult : MonoBehaviour {
 			if (thingyContainer.transform.rotation.eulerAngles.z < minPullAngle)
 			{
 				throwing = false;
-				thingyContainer.transform.localRotation = Quaternion.Euler(new Vector3(0,
-				                                                                  0,
-				                                                                  minPullAngle));
+				thingyContainer.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, minPullAngle));
 				timerToEnableCollider = 1f;
 			}
 		}
@@ -75,11 +69,16 @@ public class Catapult : MonoBehaviour {
 		if (!col.CompareTag("Player"))
 			return;
 
+		if (StateManager.CurrentState() != StateManager.State.Standard
+		    && StateManager.CurrentState() != StateManager.State.CatapultAiming)
+			return;
+
 		// TODO Test the player facing the catapult
 		if (Input.GetMouseButtonDown(0))
 		{
 			pulling = true;
 			MouseLookManager.SetCatapultsMouseLookActivated(false);
+			StateManager.SetState(StateManager.State.CatapultAiming);
 		}
 		else if (pulling && Input.GetMouseButtonUp(0))
 		{
@@ -97,6 +96,7 @@ public class Catapult : MonoBehaviour {
 			pulling = false;
 			throwing = true;
 			MouseLookManager.SetCatapultsMouseLookActivated(true);
+			StateManager.SetState(StateManager.State.Standard);
 		}
 	}
 }
