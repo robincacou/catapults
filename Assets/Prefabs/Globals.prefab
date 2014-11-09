@@ -40,8 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f2edb70777c464d949900134dae03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnManager: {fileID: 11400002}
-  GlobalCamera: {fileID: 0}
+  teamSelector: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a4162741a744a268b4a2047b1f9939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalCamera: {fileID: 0}
   team1Points:
   - {fileID: 0}
   team2Points:

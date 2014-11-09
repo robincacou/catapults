@@ -3,8 +3,7 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
 
-	public SpawnManager spawnManager;
-	public Camera GlobalCamera;
+	public TeamSelector teamSelector;
 
 	void Start () {
 		Connect();
@@ -41,13 +40,6 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Debug.Log("Joined Room!");
 
-		SpawnPlayer();
-	}
-
-	void SpawnPlayer()
-	{
-		spawnManager.SpawnPlayer(SpawnManager.ETeam.Team1);
-		
-		GlobalCamera.gameObject.SetActive(false);
+		teamSelector.enabled = true;
 	}
 }

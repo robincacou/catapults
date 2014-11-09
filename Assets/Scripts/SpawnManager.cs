@@ -3,27 +3,27 @@ using System.Collections;
 
 public class SpawnManager : MonoBehaviour {
 
+	public GameObject globalCamera;
 	public GameObject[] team1Points;
 	public GameObject[] team2Points;
 
-	public GameObject gui;
 	public GUIToolbar guiToolbar;
 
 	public enum ETeam
 	{
-		Team1,
-		Team2
+		Red,
+		Blue
 	}
 
 	public void SpawnPlayer(ETeam team)
 	{
 		Transform pos;
-		if (team == ETeam.Team1)
+		if (team == ETeam.Red)
 			pos = team1Points[Random.Range(0, team1Points.Length)].transform;
 		else
 			pos = team2Points[Random.Range(0, team2Points.Length)].transform;
 
-		GameObject playerLocalInstance = PhotonNetwork.Instantiate("Player", pos.position, pos.rotation, (int)team);
+		GameObject playerLocalInstance = PhotonNetwork.Instantiate("Player", pos.position, pos.rotation, 0);
 
 		playerLocalInstance.GetComponent<MouseLook>().enabled = true;
 		((MonoBehaviour)playerLocalInstance.GetComponent("CharacterMotor")).enabled = true;
@@ -33,7 +33,9 @@ public class SpawnManager : MonoBehaviour {
 		playerLocalInstance.GetComponent<ManagersInfoHarvester>().enabled = true;
 		playerLocalInstance.GetComponent<ToolSelector>().enabled = true;
 		playerLocalInstance.GetComponent<ToolSelector>().Initialize(guiToolbar);
-		gui.SetActive(true);
+		guiToolbar.gameObject.SetActive(true);
+
+		globalCamera.gameObject.SetActive(false);
 
 		playerLocalInstance.transform.FindChild("Main Camera").gameObject.SetActive(true);
 
