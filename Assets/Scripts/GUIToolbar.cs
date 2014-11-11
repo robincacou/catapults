@@ -10,7 +10,7 @@ public class GUIToolbar : MonoBehaviour {
 	const float initialXOffset = 5f;
 	const float initialYOffset = 14f;
 	const float initialIconsXOffset = 8f;
-	const float initialIconsYOffset = 20f;
+	const float initialIconsYOffset = 10f;
 
 	Vector3 startPos;
 
@@ -24,7 +24,7 @@ public class GUIToolbar : MonoBehaviour {
 		GUITexture[] iconsTextures = icons.GetComponentsInChildren<GUITexture>();
 		foreach (GUITexture icon in iconsTextures)
 		{
-			icon.transform.position = new Vector3(currentIconPos, initialIconsYOffset / Screen.width, 0.5f);
+			icon.transform.position = new Vector3(currentIconPos, (selector.pixelInset.height - ((icon.pixelInset.height / 2.0f) + initialIconsYOffset))  / Screen.width, 0.5f);
 			currentIconPos += ((background.pixelInset.width - 7f)/ 6.0f) / Screen.width;
 		}
 	}
