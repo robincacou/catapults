@@ -8,10 +8,6 @@ public class ManagersInfoHarvester : MonoBehaviour
 	MouseLook playerMouseLook;
 	MouseLook cameraMouseLook;
 
-	public void Initialize(GameObject go)
-	{
-	}
-
 	void Start()
 	{
 		playerMouseLook = GetComponent<MouseLook>();

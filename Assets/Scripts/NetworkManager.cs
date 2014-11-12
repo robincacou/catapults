@@ -40,6 +40,6 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Debug.Log("Joined Room!");
 
-		teamSelector.enabled = true;
+		teamSelector.gameObject.SetActive(true);
 	}
 }

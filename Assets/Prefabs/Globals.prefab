@@ -57,8 +57,9 @@ MonoBehaviour:
   - {fileID: 0}
   team2Points:
   - {fileID: 0}
-  gui: {fileID: 0}
   guiToolbar: {fileID: 0}
+  bluePlayerMaterial: {fileID: 2100000, guid: a6fe617a768b34db18f83cc4b3f9b14c, type: 2}
+  redPlayerMaterial: {fileID: 2100000, guid: 5f16015fbf05c4c35aeaa35f8c4f52ed, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

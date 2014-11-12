@@ -11,6 +11,7 @@ public class SpawnManager : MonoBehaviour {
 
 	public enum ETeam
 	{
+		Uninitialized,
 		Red,
 		Blue
 	}
@@ -33,10 +34,10 @@ public class SpawnManager : MonoBehaviour {
 		playerLocalInstance.GetComponent<ManagersInfoHarvester>().enabled = true;
 		playerLocalInstance.GetComponent<ToolSelector>().enabled = true;
 		playerLocalInstance.GetComponent<ToolSelector>().Initialize(guiToolbar);
+		playerLocalInstance.GetComponent<PlayerInfos>().InitializeTeam(team);
+
 		guiToolbar.gameObject.SetActive(true);
-
 		globalCamera.gameObject.SetActive(false);
-
 		playerLocalInstance.transform.FindChild("Main Camera").gameObject.SetActive(true);
 
 		StateManager.SetState(StateManager.State.Standard);
