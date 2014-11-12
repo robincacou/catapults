@@ -14,13 +14,10 @@ public class BombGun : MonoBehaviour {
 	{
 		if (Input.GetMouseButtonDown(1))
 		{
-			GameObject bomb = (GameObject)Instantiate(bombPrefab);
+			Vector3 initialBombPos = transform.position +  (Camera.main.transform.forward * 2) + Vector3.up;
 
-			Vector3 forward = Camera.main.transform.forward;
-
-			bomb.transform.position = transform.position + (forward * 2) + Vector3.up;
-
-			bomb.rigidbody.AddForce(forward * power);
+			GameObject bombInstance = (GameObject)PhotonNetwork.Instantiate("Bomb", initialBombPos, Quaternion.identity, 0);
+			bombInstance.rigidbody.AddForce(Camera.main.transform.forward * power);
 		}
 	}
 }

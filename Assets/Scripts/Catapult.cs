@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Catapult : MonoBehaviour {
 
-	public GameObject bombPrefab;
 	public GameObject thingyContainer;
 	public GameObject spawnPoint;
 	public MeshCollider thingyCollider;
@@ -87,7 +86,7 @@ public class Catapult : MonoBehaviour {
 			if (powerPercentage >= minPowerToSpawn)
 			{
 				thingyCollider.enabled = false;
-				GameObject bombInstance = (GameObject)Instantiate(bombPrefab, spawnPoint.transform.position, Quaternion.identity);
+				GameObject bombInstance = (GameObject)PhotonNetwork.Instantiate("Bomb", spawnPoint.transform.position, Quaternion.identity, 0);
 				bombInstance.rigidbody.AddForce(spawnPoint.transform.forward * throwPower * powerPercentage);
 
 				throwSfx.Play();

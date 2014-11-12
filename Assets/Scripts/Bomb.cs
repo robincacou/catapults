@@ -35,12 +35,12 @@ public class Bomb : MonoBehaviour {
 			{
 				foreach(GameObject target in targetsCollector.GetTargets())
 					Destroy(target);
-				Destroy(gameObject);
+				PhotonNetwork.Destroy(gameObject);
 			}
 		}
 
 		lifespan -= Time.deltaTime;
 		if (lifespan <= 0)
-			Destroy(gameObject);
+			PhotonNetwork.Destroy(gameObject);
 	}
 }
