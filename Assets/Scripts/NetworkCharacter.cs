@@ -8,6 +8,8 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 
 	PlayerInfos playerInfos;
 
+	float smoothingDistance = 5f;
+
 	// Use this for initialization
 	void Start () {
 		playerInfos = GetComponent<PlayerInfos>();
@@ -19,11 +21,19 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 		if (!photonView.isMine)
 		{
 			// If it's another player, we need to smoothly move it
-			// TODO Correct the amount of Lerping according to time passed
-			// We could also send the velocity and use it to predict the next place it's going to be
-			// But for now it should be fine
-			transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);
-			transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
+
+			if (Vector3.Distance(realPosition, transform.position) < smoothingDistance)
+			{
+				// We only transition smoothly if the new position is close enough
+				transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);
+				transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
+			}
+			else
+			{
+				// Else, we teleport. This avoids crossing half the map on spawn and destroying everithing
+				transform.position = realPosition;
+				transform.rotation = realRotation;
+			}
 		}
 	}
 
