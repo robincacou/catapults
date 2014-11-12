@@ -34,7 +34,7 @@ public class SpawnManager : MonoBehaviour {
 		playerLocalInstance.GetComponent<ManagersInfoHarvester>().enabled = true;
 		playerLocalInstance.GetComponent<ToolSelector>().enabled = true;
 		playerLocalInstance.GetComponent<ToolSelector>().Initialize(guiToolbar);
-		playerLocalInstance.GetComponent<PlayerInfos>().InitializeTeam(team);
+		playerLocalInstance.GetComponent<PlayerInfos>().SetTeamInitializeIFN(team);
 
 		guiToolbar.gameObject.SetActive(true);
 		globalCamera.gameObject.SetActive(false);

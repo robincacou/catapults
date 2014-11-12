@@ -1,20 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bomb : MonoBehaviour {
+public class Bomb : Photon.MonoBehaviour {
 
 	public float lifespan = 5f;
 	public BombTargetsCollector targetsCollector;
 	public GameObject explosionPrefab;
 
-	//float initialTimer = 1f;
 	float collisionTimer = 0.2f;
 	bool collided = false;
 
 	void OnCollisionEnter(Collision col)
 	{
-		//if (initialTimer > 0)
-		//	return;
+		// TODO Maybe start the collect only on the initially created bomb (not the networked ones)
+		// And instanciate the explosion over the network
 
 		if (!collided)
 			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
@@ -24,8 +23,9 @@ public class Bomb : MonoBehaviour {
 
 	void Update ()
 	{
-		//if (initialTimer > 0)
-		//	initialTimer -= Time.deltaTime;
+		// We only compute the explosion if we are the one who created the bomb
+		if (!photonView.isMine)
+			return;
 
 		if (collided)
 		{
@@ -34,7 +34,7 @@ public class Bomb : MonoBehaviour {
 			if (collisionTimer <= 0)
 			{
 				foreach(GameObject target in targetsCollector.GetTargets())
-					Destroy(target);
+					PhotonNetwork.Destroy(target); // TODO Maybe we should be the own owning the cube, not the bomb?
 				PhotonNetwork.Destroy(gameObject);
 			}
 		}

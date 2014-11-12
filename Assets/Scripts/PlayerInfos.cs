@@ -8,6 +8,10 @@ public class PlayerInfos : MonoBehaviour {
 
 	SpawnManager.ETeam team = SpawnManager.ETeam.Uninitialized;
 
+	void Start()
+	{
+	}
+
 	public SpawnManager.ETeam GetTeam()
 	{
 		return team;
@@ -22,7 +26,7 @@ public class PlayerInfos : MonoBehaviour {
 		}
 	}
 
-	public void InitializeTeam(SpawnManager.ETeam team)
+	void InitializeTeam(SpawnManager.ETeam team)
 	{
 		this.team = team;
 			
