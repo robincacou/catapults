@@ -3,6 +3,8 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
 
+	public bool offlineMode = false;
+
 	public TeamSelector teamSelector;
 
 	void Start () {
@@ -11,7 +13,13 @@ public class NetworkManager : MonoBehaviour {
 	
 	void Connect()
 	{
-		PhotonNetwork.ConnectUsingSettings("Pre-Alpha:0.01");
+		if (offlineMode)
+		{
+			PhotonNetwork.offlineMode = true;
+			OnJoinedLobby();
+		}
+		else
+			PhotonNetwork.ConnectUsingSettings("Pre-Alpha:0.01");
 	}
 
 	void OnGUI()
