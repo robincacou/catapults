@@ -12,7 +12,7 @@ public class BombGun : MonoBehaviour {
 
 	void Update ()
 	{
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetButtonDown("Fire2"))
 		{
 			Vector3 initialBombPos = transform.position +  (Camera.main.transform.forward * 2) + Vector3.up;
 

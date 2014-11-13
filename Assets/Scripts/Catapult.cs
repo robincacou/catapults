@@ -73,13 +73,13 @@ public class Catapult : MonoBehaviour {
 			return;
 
 		// TODO Test the player facing the catapult
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetButtonDown("Fire1"))
 		{
 			pulling = true;
 			MouseLookManager.SetCatapultsMouseLookActivated(false);
 			StateManager.SetState(StateManager.State.CatapultAiming);
 		}
-		else if (pulling && Input.GetMouseButtonUp(0))
+		else if (pulling && Input.GetButtonUp("Fire1"))
 		{
 			float powerPercentage = (thingyContainer.transform.rotation.eulerAngles.z - minPullAngle) / (maxPullAngle - minPullAngle);
 

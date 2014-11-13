@@ -18,7 +18,7 @@ public class BlockCreator : MonoBehaviour {
 		    && StateManager.CurrentState() != StateManager.State.BlockCreating)
 			return;
 
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetButtonDown("Fire2"))
 		{
 			drawGhost = true;
 			ghost = ((GameObject)Instantiate(ghostPrefab)).GetComponent<GhostBlock>();
@@ -32,7 +32,7 @@ public class BlockCreator : MonoBehaviour {
 			Vector3 offset = Camera.main.transform.forward * SpawnDistance;
 
 			ghost.transform.position = this.transform.position + new Vector3(0, 2, 0) + offset;
-			if (Input.GetMouseButtonUp(1))
+			if (Input.GetButtonUp("Fire2"))
 			{
 				if (!ghost.IsColliding())
 					PhotonNetwork.Instantiate("Block", this.transform.position + new Vector3(0, 2, 0) + offset, Quaternion.identity, 0);
