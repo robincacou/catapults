@@ -8,6 +8,8 @@ public class SpawnManager : MonoBehaviour {
 	public GameObject[] team2Points;
 
 	public GUIToolbar guiToolbar;
+	public ScoreManager guiScore;
+
 
 	public enum ETeam
 	{
@@ -37,6 +39,7 @@ public class SpawnManager : MonoBehaviour {
 		playerLocalInstance.GetComponent<PlayerInfos>().SetTeamInitializeIFN(team);
 
 		guiToolbar.gameObject.SetActive(true);
+		guiScore.gameObject.SetActive(true);
 		globalCamera.gameObject.SetActive(false);
 		playerLocalInstance.transform.FindChild("Main Camera").gameObject.SetActive(true);
 
